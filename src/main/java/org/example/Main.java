@@ -90,7 +90,7 @@ public class Main {
 
         String[] password = new String[passwordLengthOfAtleast8];
         String passwordString = String.join("",password);
-        while(passwordValidation(passwordString)){
+        while(!passwordValidation(passwordString)){
             for(int i = 0; i < passwordLengthOfAtleast8; i++) {
                 int chooseFromSmallBigCharsNumeralsSpecialsCharcter = random.nextInt(4);
 
