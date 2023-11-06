@@ -80,11 +80,6 @@ public class Main{
             System.out.println("Password has to be alteast 8 charcters long");
             return null;
         }
-        char[] smallCharacters ="abcdefghijklmnopqrstuvxyz".toCharArray();
-        char[] bigCharacters = "ABCDEFGHIJKLMNOPQRSTUVXYZ".toCharArray();
-        char[] numerals = "1234567890".toCharArray();
-        char[] specialCharacters = "_-^°!+*~#/&%$§/?ß´.,:;".toCharArray();
-        char[][] randomChooseArray = {smallCharacters, bigCharacters, numerals, specialCharacters};
 
         Random random = new Random();
 
@@ -92,8 +87,8 @@ public class Main{
         String passwordString = String.join("",password);
         while(!passwordValidation(passwordString)){
             for(int i = 0; i < passwordLength; i++) {
-                int chooseFromRandomArray = random.nextInt(randomChooseArray.length);
-                password[i] = String.valueOf(randomChooseArray[chooseFromRandomArray % 4][randomIndiceForCharArray(chooseFromRandomArray)]);
+                int chooseFromRandomArray = random.nextInt(4);
+                password[i] = randomStringFromCharArray(chooseFromRandomArray);
             }
             passwordString = String.join("", password);
         }
@@ -102,6 +97,38 @@ public class Main{
 
 
     }
+
+    public static String randomStringFromCharArray(int number){
+        Random random = new Random();
+        char[] smallCharacters ="abcdefghijklmnopqrstuvxyz".toCharArray();
+        char[] bigCharacters = "ABCDEFGHIJKLMNOPQRSTUVXYZ".toCharArray();
+        char[] numerals = "1234567890".toCharArray();
+        char[] specialCharacters = "_-^°!+*~#/&%$§/?ß´.,:;".toCharArray();
+
+        if(number % 4 == 0){
+            return String.valueOf(smallCharacters[random.nextInt(smallCharacters.length)]);
+        }
+        if(number % 4 == 1){
+            return String.valueOf(bigCharacters[random.nextInt(bigCharacters.length)]);
+        }
+        if(number % 4 == 2){
+            return String.valueOf(numerals[random.nextInt(numerals.length)]);
+        }
+
+        return String.valueOf(specialCharacters[random.nextInt(specialCharacters.length)]);
+    }
+
+
+    //Nothing to see here furher....
+
+
+
+
+
+
+
+
+
     public static String passwordGenerator2(int passwordLength){
         if(passwordLength<8){
             System.out.println("Password has to be alteast 8 charcters long");
