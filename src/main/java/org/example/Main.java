@@ -15,7 +15,6 @@ public class Main{
         if(!hasNumerals(password)) return false;
         if(!hasBigCharacters(password)) return false;
         if(!hasSmallCharacters(password)) return false;
-        if(!hasSpecialCharacters(password)) return false;
         return hasNotOverusedPasswords(password);
     }
     public static boolean hasAppropriateLength(String password) {
