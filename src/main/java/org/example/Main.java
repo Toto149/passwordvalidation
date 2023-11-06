@@ -2,9 +2,11 @@ package org.example;
 
 import java.util.Random;
 
-public class Main {
+public class Main{
     public static void main(String[] args) {
-        System.out.println("Hello world!");
+        String password = passwordGenerator(8);
+        System.out.println(password);
+        System.out.println(passwordValidation(password));
     }
 
     public static boolean passwordValidation(String password){
@@ -13,14 +15,11 @@ public class Main {
         if(!hasNumerals(password)) return false;
         if(!hasBigCharacters(password)) return false;
         if(!hasSmallCharacters(password)) return false;
-        if(!hasNotOverusedPasswords(password)) return false;
-        return true;
+        if(!hasSpecialCharacters(password)) return false;
+        return hasNotOverusedPasswords(password);
     }
     public static boolean hasAppropriateLength(String password) {
-        if (password.length() >= 8) {
-            return true;
-        }
-        return false;
+        return password.length() >= 8;
     }
 
     public static boolean hasNumerals(String password) {
