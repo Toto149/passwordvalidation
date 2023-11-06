@@ -15,7 +15,8 @@ public class Main{
         if(!hasNumerals(password)) return false;
         if(!hasBigCharacters(password)) return false;
         if(!hasSmallCharacters(password)) return false;
-        return hasNotOverusedPasswords(password);
+        if(!hasNotOverusedPasswords(password)) return false;
+        return hasSpecialCharacters(password);
     }
     public static boolean hasAppropriateLength(String password) {
         return password.length() >= 8;
@@ -81,7 +82,7 @@ public class Main{
         char[] smallCharacters ="abcdefghijklmnopqrstuvxyz".toCharArray();
         char[] bigCharacters = "ABCDEFGHIJKLMNOPQRSTUVXYZ".toCharArray();
         char[] numerals = "1234567890".toCharArray();
-        char[] specialCharacters = "^°!+*~#/&%$§/?ß´.,:;".toCharArray();
+        char[] specialCharacters = "_-^°!+*~#/&%$§/?ß´.,:;".toCharArray();
         char[][] randomChooseArray = {smallCharacters, bigCharacters, numerals, specialCharacters};
 
         Random random = new Random();

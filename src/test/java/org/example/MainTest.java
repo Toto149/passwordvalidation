@@ -6,9 +6,9 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class MainTest {
     @Test
-    void passwordValidation_shouldReturnTrue_whenAabD1234IsGiven(){
+    void passwordValidation_shouldReturnTrue_whenAabD123_IsGiven(){
         //GIVEN
-        String password = "AabD1234";
+        String password = "AabD123_";
         //WHEN
         boolean actual = Main.passwordValidation(password);
         //THEN
