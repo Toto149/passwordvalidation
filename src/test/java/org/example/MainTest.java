@@ -129,7 +129,7 @@ class MainTest {
         //WHEN
         boolean actual = Main.hasSpecialCharacters(password);
         //THEN
-        assertTrue(actual);
+        assertFalse(actual);
     }
 
 
