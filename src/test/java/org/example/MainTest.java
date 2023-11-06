@@ -132,5 +132,26 @@ class MainTest {
         assertFalse(actual);
     }
 
+    @Test
+    void passwordGenerator_shouldReturnValidPassword_whenLenghtIsGreaterEquals8(){
+        //GIVEN
+        int passwordLength = 8;
+        String password = Main.passwordGenerator(passwordLength);
+        //WHEN
+        boolean actual = Main.passwordValidation(password);
+        //THEN
+        assertTrue(actual);
+    }
+    @Test
+    void passwordGenerator_shouldReturnNull_whenLengthIs7(){
+        //GIVEN
+        int passwordLength = 7;
+        String expected = null;
+        //WHEN
+        String actual = Main.passwordGenerator(passwordLength);
+        //THEN
+        assertEquals(expected,actual);
+    }
+
 
 }

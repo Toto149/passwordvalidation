@@ -1,5 +1,7 @@
 package org.example;
 
+import java.util.Random;
+
 public class Main {
     public static void main(String[] args) {
         System.out.println("Hello world!");
@@ -71,6 +73,49 @@ public class Main {
             }
         }
         return false;
+    }
+
+    public static String passwordGenerator(int passwordLengthOfAtleast8){
+        if(passwordLengthOfAtleast8<8){
+            System.out.println("Password has to be alteast 8 charcters long");
+            return null;
+        }
+        char[] smallCharacters ="abcdefghijklmnopqrstuvxyz".toCharArray();
+        char[] bigCharacters = "ABCDEFGHIJKLMNOPQRSTUVXYZ".toCharArray();
+        char[] numerals = "1234567890".toCharArray();
+        char[] specialCharacters = "^°!+*~#/&%$§/?ß´.,:;".toCharArray();
+        char[][] randomChooseArray = {smallCharacters, bigCharacters, numerals, specialCharacters};
+
+        Random random = new Random();
+
+        String[] password = new String[passwordLengthOfAtleast8];
+        String passwordString = String.join("",password);
+        while(passwordValidation(passwordString)){
+            for(int i = 0; i < passwordLengthOfAtleast8; i++) {
+                int chooseFromSmallBigCharsNumeralsSpecialsCharcter = random.nextInt(4);
+
+                if (chooseFromSmallBigCharsNumeralsSpecialsCharcter == 0) {
+                    int chooseFromSmallCharacters = random.nextInt(26);
+                    password[i] = String.valueOf(randomChooseArray[chooseFromSmallBigCharsNumeralsSpecialsCharcter][chooseFromSmallCharacters]);
+                }
+                if (chooseFromSmallBigCharsNumeralsSpecialsCharcter == 1) {
+                    int chooseFromBigCharacters = random.nextInt(26);
+                    password[i] = String.valueOf(randomChooseArray[chooseFromSmallBigCharsNumeralsSpecialsCharcter][chooseFromBigCharacters]);
+                }
+                if (chooseFromSmallBigCharsNumeralsSpecialsCharcter == 2) {
+                    int chooseFromNumerals = random.nextInt(10);
+                    password[i] = String.valueOf(randomChooseArray[chooseFromSmallBigCharsNumeralsSpecialsCharcter][chooseFromNumerals]);
+                }
+                if (chooseFromSmallBigCharsNumeralsSpecialsCharcter == 3) {
+                    int chooseFromSpecialCharacters = random.nextInt(20);
+                    password[i] = String.valueOf(randomChooseArray[chooseFromSmallBigCharsNumeralsSpecialsCharcter][chooseFromSpecialCharacters]);
+                }
+            }
+        }
+
+        return String.join("",password);
+
+
     }
 
 
