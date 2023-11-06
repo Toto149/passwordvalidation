@@ -113,7 +113,24 @@ class MainTest {
         //THEN
         assertTrue(actual);
     }
-
+    @Test
+    void hasSpecialCharacters_shouldReturnTrue_whenPasswordWithSpecialCharacterIsGiven(){
+        //GIVEN
+        String password = "A!BCDa1234";
+        //WHEN
+        boolean actual = Main.hasSpecialCharacters(password);
+        //THEN
+        assertTrue(actual);
+    }
+    @Test
+    void hasSpecialCharacters_shouldReturnFalse_whenPasswordWithoutSpecialCharacterIsGiven(){
+        //GIVEN
+        String password = "ABCDa1234";
+        //WHEN
+        boolean actual = Main.hasSpecialCharacters(password);
+        //THEN
+        assertTrue(actual);
+    }
 
 
 }

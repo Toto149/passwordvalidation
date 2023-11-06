@@ -62,6 +62,16 @@ public class Main {
         }
         return true;
     }
+    public static boolean hasSpecialCharacters(String password){
+        String specialCharacters = "^°!+*~#/&%$§/?ß´´.,:;";
+        char[] specialChars = specialCharacters.toCharArray();
+        for(char specialChar: specialChars){
+            if(password.contains(Character.valueOf(specialChar).toString())){
+                return true;
+            }
+        }
+        return false;
+    }
 
 
 }
