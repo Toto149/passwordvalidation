@@ -88,7 +88,7 @@ public class Main{
         while(!passwordValidation(passwordString)){
             for(int i = 0; i < passwordLength; i++) {
                 int chooseFromRandomArray = random.nextInt(4);
-                password[i] = randomStringFromCharArray(chooseFromRandomArray);
+                password[i] = randomCharacterAsString(chooseFromRandomArray);
             }
             passwordString = String.join("", password);
         }
@@ -98,7 +98,7 @@ public class Main{
 
     }
 
-    public static String randomStringFromCharArray(int number){
+    public static String randomCharacterAsString(int number){
         Random random = new Random();
         char[] smallCharacters ="abcdefghijklmnopqrstuvxyz".toCharArray();
         char[] bigCharacters = "ABCDEFGHIJKLMNOPQRSTUVXYZ".toCharArray();
