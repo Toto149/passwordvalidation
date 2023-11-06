@@ -11,7 +11,7 @@ public class Main {
         if(!hasNumerals(password)) return false;
         if(!hasBigCharacters(password)) return false;
         if(!hasSmallCharacters(password)) return false;
-        if(!hasOverusedPasswords(password)) return false;
+        if(!hasNotOverusedPasswords(password)) return false;
         return true;
     }
     public static boolean hasAppropriateLength(String password) {
@@ -52,7 +52,7 @@ public class Main {
         }
         return false;
     }
-    public static boolean hasOverusedPasswords(String password){
+    public static boolean hasNotOverusedPasswords(String password){
         String[] overusedPasswordSnippets = {"12345678","123456789","Password","Passwort"};
         for(String overusedSnippet : overusedPasswordSnippets) {
             if (password.contains(overusedSnippet)) {

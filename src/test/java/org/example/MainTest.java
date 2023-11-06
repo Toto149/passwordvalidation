@@ -5,7 +5,42 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 class MainTest {
-
+    @Test
+    void passwordValidation_shouldReturnTrue_whenAabD1234IsGiven(){
+        //GIVEN
+        String password = "AabD1234";
+        //WHEN
+        boolean actual = Main.passwordValidation(password);
+        //THEN
+        assertTrue(actual);
+    }
+    @Test
+    void passwordValidation_shouldReturnFalse_whenABCDEFGH(){
+        //GIVEN
+        String password = "ABCDEFGH";
+        //WHEN
+        boolean actual = Main.passwordValidation(password);
+        //THEN
+        assertFalse(actual);
+    }
+    @Test
+    void hasNotOverusedPasswords_shouldReturnTrue_whenAabC1234(){
+        //GIVEN
+        String password = "AabC1234";
+        //WHEN
+        boolean actual = Main.hasNotOverusedPasswords(password);
+        //THEN
+        assertTrue(actual);
+    }
+    @Test
+    void hasNotOverusedPasswords_shouldReturnFalse_whenABC12345678(){
+        //GIVEN
+        String password = "ABC12345678";
+        //WHEN
+        boolean actual = Main.hasNotOverusedPasswords(password);
+        //THEN
+        assertFalse(actual);
+    }
     @Test
     void hasNumerals_shouldReturnFalse_whenABCdefghIsGiven(){
         //GIVEN
