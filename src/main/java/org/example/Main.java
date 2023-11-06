@@ -1,5 +1,6 @@
 package org.example;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 public class Main{
@@ -74,8 +75,8 @@ public class Main{
         return false;
     }
 
-    public static String passwordGenerator(int passwordLengthOfAtleast8){
-        if(passwordLengthOfAtleast8<8){
+    public static String passwordGenerator(int passwordLength){
+        if(passwordLength<8){
             System.out.println("Password has to be alteast 8 charcters long");
             return null;
         }
@@ -87,28 +88,12 @@ public class Main{
 
         Random random = new Random();
 
-        String[] password = new String[passwordLengthOfAtleast8];
+        String[] password = new String[passwordLength];
         String passwordString = String.join("",password);
         while(!passwordValidation(passwordString)){
-            for(int i = 0; i < passwordLengthOfAtleast8; i++) {
-                int chooseFromSmallBigCharsNumeralsSpecialsCharcter = random.nextInt(randomChooseArray.length);
-
-                if (chooseFromSmallBigCharsNumeralsSpecialsCharcter == 0) {
-                    int chooseFromSmallCharacters = random.nextInt(smallCharacters.length);
-                    password[i] = String.valueOf(randomChooseArray[chooseFromSmallBigCharsNumeralsSpecialsCharcter][chooseFromSmallCharacters]);
-                }
-                if (chooseFromSmallBigCharsNumeralsSpecialsCharcter == 1) {
-                    int chooseFromBigCharacters = random.nextInt(smallCharacters.length);
-                    password[i] = String.valueOf(randomChooseArray[chooseFromSmallBigCharsNumeralsSpecialsCharcter][chooseFromBigCharacters]);
-                }
-                if (chooseFromSmallBigCharsNumeralsSpecialsCharcter == 2) {
-                    int chooseFromNumerals = random.nextInt(numerals.length);
-                    password[i] = String.valueOf(randomChooseArray[chooseFromSmallBigCharsNumeralsSpecialsCharcter][chooseFromNumerals]);
-                }
-                if (chooseFromSmallBigCharsNumeralsSpecialsCharcter == 3) {
-                    int chooseFromSpecialCharacters = random.nextInt(specialCharacters.length);
-                    password[i] = String.valueOf(randomChooseArray[chooseFromSmallBigCharsNumeralsSpecialsCharcter][chooseFromSpecialCharacters]);
-                }
+            for(int i = 0; i < passwordLength; i++) {
+                int chooseFromRandomArray = random.nextInt(randomChooseArray.length);
+                password[i] = String.valueOf(randomChooseArray[chooseFromRandomArray % 4][randomIndiceForCharArray(chooseFromRandomArray)]);
             }
             passwordString = String.join("", password);
         }
@@ -117,6 +102,60 @@ public class Main{
 
 
     }
+    public static String passwordGenerator2(int passwordLength){
+        if(passwordLength<8){
+            System.out.println("Password has to be alteast 8 charcters long");
+            return null;
+        }
+        char[] smallCharacters ="abcdefghijklmnopqrstuvxyz".toCharArray();
+        char[] bigCharacters = "ABCDEFGHIJKLMNOPQRSTUVXYZ".toCharArray();
+        char[] numerals = "1234567890".toCharArray();
+        char[] specialCharacters = "_-^°!+*~#/&%$§/?ß´.,:;".toCharArray();
+        char[][] randomChooseArray = {smallCharacters, bigCharacters, numerals, specialCharacters};
+        ArrayList<Integer> listAvailableIndices = new ArrayList<>();
 
+        for(int i = 0; i < passwordLength; i++){
+            listAvailableIndices.add(i);
+        }
+
+        Random random = new Random();
+        int j = 0;
+
+        String[] password = new String[passwordLength];
+
+        for(int i = 0; i < passwordLength; i++){
+            int randomNumber = random.nextInt(passwordLength);
+            if(j>passwordLength/2){
+                for (int number : listAvailableIndices){
+                    password[number] = String.valueOf(randomChooseArray[i%4][randomIndiceForCharArray(i)]);
+                }
+
+            }
+            password[randomNumber] = String.valueOf(randomChooseArray[i % 4][randomIndiceForCharArray(i)]);
+            listAvailableIndices.remove(randomNumber);
+            j++;
+        }
+        return String.join("",password);
+    }
+
+    public static int randomIndiceForCharArray(int number){
+        Random random = new Random();
+        char[] smallCharacters ="abcdefghijklmnopqrstuvxyz".toCharArray();
+        char[] bigCharacters = "ABCDEFGHIJKLMNOPQRSTUVXYZ".toCharArray();
+        char[] numerals = "1234567890".toCharArray();
+        char[] specialCharacters = "_-^°!+*~#/&%$§/?ß´.,:;".toCharArray();
+
+        if(number % 4 == 0){
+            return random.nextInt(smallCharacters.length);
+        }
+        if(number % 4 == 1){
+            return random.nextInt(bigCharacters.length);
+        }
+        if(number % 4 == 2){
+            return random.nextInt(numerals.length);
+        }
+
+        return random.nextInt(specialCharacters.length);
+    }
 
 }
