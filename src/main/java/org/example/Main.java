@@ -92,25 +92,26 @@ public class Main {
         String passwordString = String.join("",password);
         while(!passwordValidation(passwordString)){
             for(int i = 0; i < passwordLengthOfAtleast8; i++) {
-                int chooseFromSmallBigCharsNumeralsSpecialsCharcter = random.nextInt(4);
+                int chooseFromSmallBigCharsNumeralsSpecialsCharcter = random.nextInt(randomChooseArray.length);
 
                 if (chooseFromSmallBigCharsNumeralsSpecialsCharcter == 0) {
-                    int chooseFromSmallCharacters = random.nextInt(26);
+                    int chooseFromSmallCharacters = random.nextInt(smallCharacters.length);
                     password[i] = String.valueOf(randomChooseArray[chooseFromSmallBigCharsNumeralsSpecialsCharcter][chooseFromSmallCharacters]);
                 }
                 if (chooseFromSmallBigCharsNumeralsSpecialsCharcter == 1) {
-                    int chooseFromBigCharacters = random.nextInt(26);
+                    int chooseFromBigCharacters = random.nextInt(smallCharacters.length);
                     password[i] = String.valueOf(randomChooseArray[chooseFromSmallBigCharsNumeralsSpecialsCharcter][chooseFromBigCharacters]);
                 }
                 if (chooseFromSmallBigCharsNumeralsSpecialsCharcter == 2) {
-                    int chooseFromNumerals = random.nextInt(10);
+                    int chooseFromNumerals = random.nextInt(numerals.length);
                     password[i] = String.valueOf(randomChooseArray[chooseFromSmallBigCharsNumeralsSpecialsCharcter][chooseFromNumerals]);
                 }
                 if (chooseFromSmallBigCharsNumeralsSpecialsCharcter == 3) {
-                    int chooseFromSpecialCharacters = random.nextInt(20);
+                    int chooseFromSpecialCharacters = random.nextInt(specialCharacters.length);
                     password[i] = String.valueOf(randomChooseArray[chooseFromSmallBigCharsNumeralsSpecialsCharcter][chooseFromSpecialCharacters]);
                 }
             }
+            passwordString = String.join("", password);
         }
 
         return String.join("",password);

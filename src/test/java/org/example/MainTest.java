@@ -146,11 +146,10 @@ class MainTest {
     void passwordGenerator_shouldReturnNull_whenLengthIs7(){
         //GIVEN
         int passwordLength = 7;
-        String expected = null;
         //WHEN
         String actual = Main.passwordGenerator(passwordLength);
         //THEN
-        assertEquals(expected,actual);
+        assertNull(actual);
     }
 
 
